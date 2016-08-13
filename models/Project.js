@@ -4,7 +4,7 @@ var Board = require('./Board.js');
 var ProjectSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: false
+        required: true
     },
     description: String,
     boards: [Board.schema],
