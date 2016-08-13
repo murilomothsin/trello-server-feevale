@@ -32,7 +32,7 @@ app.post('/users', function(req, res){
 	var new_user = new User(req.body);
 	new_user.save(function(err, data){
 		if(err){
-			res.json(err);
+			res.status(400).json(err);
 		}else{
 			res.json(data);
 		}
