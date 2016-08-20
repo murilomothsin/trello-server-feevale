@@ -68,15 +68,21 @@ router.post('/sign_in', function(req, res){
 });
 
 router.post('/valid_token', function(req, res, next) {
-  User.findOne({token: req.body.token}, "_id name email", function(err, user){
-    if(err) { res.status(401).json({ type: false, data: "User not found!"}); return ; }
-    if(user) {
-      res.json({data: user}); return ;
-    }else{
-      res.status(401).json({ type: false, data: "User not found!"});
-      return ;
-    }
-  });
+  if(req.body.token){
+    jwt.verify(req.body.token, "segredo", function(err, decoded){
+      User.findOne({_id: decoded._id}, "_id name email", function(err, user){
+        if(err) { res.status(401).json({ type: false, data: "User not found!"}); return ; }
+        if(user) {
+          res.json({data: user}); return ;
+        }else{
+          res.status(401).json({ type: false, data: "User not found!"});
+          return ;
+        }
+      });
+    });
+  }else{
+    res.status(401).json({ type: false, data: "No token provided!"});
+  }
 });
 
 module.exports = router;
