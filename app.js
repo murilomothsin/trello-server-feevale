@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/trello');
 
 var users = require('./controllers/users_ctrl.js');
+var projects = require('./controllers/projects_ctrl.js');
 
 app.use(bodyParser.json());
 
@@ -17,6 +18,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/users', users);
+app.use('/projects', projects);
 
 app.get('/', function (req, res) {
   res.send('Hello World!');

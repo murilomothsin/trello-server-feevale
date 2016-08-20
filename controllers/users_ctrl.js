@@ -52,7 +52,7 @@ router.post('/sign_in', function(req, res){
           res.status(401).json({message: 'User or Password invalid!'});
         }else{
           var params = {
-            _id: user._id
+            _id: user._id,
             name: user.name,
             username: user.username,
             email: user.email

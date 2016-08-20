@@ -9,7 +9,8 @@ var ProjectSchema = new mongoose.Schema({
     description: String,
     boards: [Board.schema],
     team: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    created_at: {type: Date, default: Date.now}
+    created_at: {type: Date, default: Date.now},
+    creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 
 });
 
