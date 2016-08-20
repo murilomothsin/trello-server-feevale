@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require("jsonwebtoken");
+var _ = require('underscore')
 var Project = require('../models/Project.js');
 
 router.use(function(req, res, next) {
@@ -53,6 +54,7 @@ router.post('/', function(req, res) {
 
 // Rota para atualizar projeto
 router.put('/:id', function(req, res) {
+  project_params(req.body)
   Project.findById(req.params.id, function(err, project){
     if(err){ return res.status(500).json(err); }
     if(project === null || project === undefined){ return res.status(404).send({ success: false, message: 'Project not found.' }); }
@@ -83,6 +85,12 @@ router.get('/:id', function(req, res) {
     res.json({ project: project });
   })
 });
+
+function project_params(params){
+  team_fields = {'boards': {'tasks': ['name', 'completed']}};
+  console.log(_.contains(team_fields, params));
+  //return _.contains(team_fields, params)
+}
 
 
 module.exports = router;
