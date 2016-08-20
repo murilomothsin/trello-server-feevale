@@ -4,6 +4,7 @@ var jwt = require("jsonwebtoken");
 var Project = require('../models/Project.js');
 
 router.use(function(req, res, next) {
+  console.log(req.headers);
   if (req.headers['authorization']) {
     jwt.verify(req.headers['authorization'], "segredo", function(err, decoded) {
       if (err) {
