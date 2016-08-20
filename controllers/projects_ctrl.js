@@ -38,7 +38,7 @@ router.post('/', function(req, res) {
   for (i in req.body.boards) {
     req.body.boards[i].creator = req.decoded._id;
     for (x in req.body.boards[i].tasks) {
-      req.body.boards[i].tasks[i].creator = req.decoded._id;
+      req.body.boards[i].tasks[x].creator = req.decoded._id;
     }
   }
   var project = new Project(req.body);
@@ -63,8 +63,8 @@ router.put('/:id', function(req, res) {
       if(req.body.boards[i].creator === undefined)
         req.body.boards[i].creator = req.decoded._id;
       for (x in req.body.boards[i].tasks) {
-        if(req.body.boards[i].tasks[i].creator === undefined)
-          req.body.boards[i].tasks[i].creator = req.decoded._id;
+        if(req.body.boards[i].tasks[x].creator === undefined)
+          req.body.boards[i].tasks[x].creator = req.decoded._id;
       }
     }
     project.boards = req.body.boards;

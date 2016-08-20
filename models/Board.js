@@ -9,7 +9,8 @@ var BoardSchema = new mongoose.Schema({
     description: String,
     tasks: [Task.schema],
     created_at: {type: Date, default: Date.now},
-    creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+    creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    deleted: Boolean
 
 });
 

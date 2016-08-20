@@ -8,7 +8,9 @@ var mongoose = require('mongoose');
         state: Number,
         responsibles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
         created_at: {type: Date, default: Date.now},
-        creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+        creator: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+        complete: Boolean,
+        deleted: Boolean
 
     });
 
